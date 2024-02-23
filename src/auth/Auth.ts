@@ -1,4 +1,4 @@
-import Keycloak, { KeycloakConfig, KeycloakInitOptions, KeycloakOnLoad } from "keycloak-js"
+import Keycloak, { KeycloakConfig, KeycloakInitOptions, KeycloakOnLoad, KeycloakProfile } from "keycloak-js"
 // import { StoreDefinition } from 'pinia'
 import { useMainStore }  from '@/stores/main'
 // import type { LocalStorageMapping } from "@/auth/LocalStorageMap"
@@ -17,7 +17,7 @@ export class Auth {
   }
 
   private init(init_options: KeycloakInitOptions): Promise<any> {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
 
       //@ts-ignore
       !this.keycloak?.didInitialize && this.keycloak
@@ -50,18 +50,15 @@ export class Auth {
               })
           }
 
-          this.keycloak.loadUserInfo().then((user) => {
+          this.keycloak.loadUserInfo().then((user: KeycloakProfile) => {
             this.store.user = user
           })
-
-          // this.keycloak.loadUserProfile().then((user) => {
-          //   this.store.user = user
-          // })
         }
         resolve(true)
       })
       .catch((e) => {
         console.error(e)
+        reject(e)
       })
     })
   }

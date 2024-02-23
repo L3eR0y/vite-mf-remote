@@ -24,13 +24,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-
-    "vueCompilerOptions": {
-      "plugins": [
-        "@vue/language-plugin-pug"
-      ]
-    },
-
     "baseUrl": ".",
 
     "paths": {

@@ -5,7 +5,6 @@ import federation from "@originjs/vite-plugin-federation";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  envDir: './',
   plugins: [
     vue(),
     federation({
@@ -18,9 +17,11 @@ export default defineConfig({
       shared: ['vue', 'pinia', 'vue-router']
     })
   ],
-  base: 'http://localhost:5173',
+  server: {
+    port: 3030
+  },
   build: {
-    target: ["chrome89", "edge89", "firefox89", "safari15"],
+    target: 'esnext',
     minify: false,
     cssCodeSplit: true,
     rollupOptions: {
@@ -42,5 +43,5 @@ export default defineConfig({
         additionalData: '@import "./src/assets/styles/scss/index.scss";',
       },
     },
-  },
+  }
 })

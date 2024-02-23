@@ -7,18 +7,23 @@ import { createPinia } from 'pinia'
 import ruLocale from '@/locales/ru.json'
 import enLocale from '@/locales/en.json'
 
+// import './style.css'
 import App from './App.vue'
 
 // Styles
 import "./assets/styles/bootstrap.css"
 import "./assets/styles/app.scss"
-// import "./assets/styles/style.css"
+import "./assets/styles/style.css"
 
 // Routes
 import routes from  './routes/routes'
 
 //Plugins
-import KeycloakPlugin from '@/plugins/keycloak'
+// import KeycloakPlugin from '@/plugins/keycloak'
+
+//Remotes
+// import RemoteMainPage from 'main-page/MainPage'
+// import ProfileService from 'profile-service/Profile'
 
 const i18n = createI18n({
     locale: 'ru',
@@ -37,8 +42,10 @@ const pinia = createPinia()
 
 const app = createApp(App)
 
+// app.component('ProfileService', ProfileService)
+
 app.use(pinia)
-app.use(KeycloakPlugin)
+// app.use(KeycloakPlugin)
 app.use(router)
 app.use(i18n)
 
