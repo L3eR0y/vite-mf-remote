@@ -5,21 +5,19 @@ import federation from "@originjs/vite-plugin-federation";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  envDir: './',
   plugins: [
     vue(),
     federation({
-      name: 'synergy-elka-services',
-      filename: 'remoteEntry.js',
+      name: 'vite-mf-remote',
       exposes: {
-        './NestedRoutingCmp': './src/pages/NestedRouting/index.vue',
-        './Routes': './src/routes/routes.ts'
+        './MainPage': './src/services/Main/index.vue',
+        './MainPageRoutes': './src/routes/routes.ts'
       },
       shared: ['vue', 'pinia', 'vue-router']
     })
   ],
-  server: {
-    port: 3030
-  },
+  base: 'http://localhost:5173',
   build: {
     target: 'esnext',
     minify: false,
@@ -43,5 +41,5 @@ export default defineConfig({
         additionalData: '@import "./src/assets/styles/scss/index.scss";',
       },
     },
-  }
+  },
 })

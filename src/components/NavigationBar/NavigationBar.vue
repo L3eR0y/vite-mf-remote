@@ -13,8 +13,11 @@
 
 <script setup lang="ts">
 import Search from '@components/Search/Search.vue'
+// @ts-expect-error 
 import BellBadgeOutline from 'vue-material-design-icons/BellBadgeOutline.vue'
+// @ts-expect-error 
 import MessageTextOutline from 'vue-material-design-icons/MessageTextOutline.vue'
+// @ts-expect-error 
 import AccountCircleOutline from 'vue-material-design-icons/AccountCircleOutline.vue'
 
 </script>

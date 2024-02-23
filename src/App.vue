@@ -4,8 +4,8 @@
 </template>
   
 <script setup lang="ts">
-  import { useMainStore }  from '@/stores/main'
-  const store = useMainStore()
+  // import { useMainStore }  from '@/stores/main'
+  // const store = useMainStore()
 </script>
   
 <style lang="scss" scoped>

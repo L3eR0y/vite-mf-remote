@@ -6,7 +6,7 @@
         path(fill-rule="evenodd" clip-rule="evenodd" d="M14.7364 6.93548C15.0879 7.28695 15.0879 7.8568 14.7364 8.20827L10.5728 12.3719L14.7364 16.5355C15.0879 16.887 15.0879 17.4568 14.7364 17.8083C14.3849 18.1597 13.8151 18.1597 13.4636 17.8083L8.6636 13.0083C8.31213 12.6568 8.31213 12.087 8.6636 11.7355L13.4636 6.93548C13.8151 6.58401 14.3849 6.58401 14.7364 6.93548Z" fill="#98989A")
     .sidebar__logo 
     .sidebar__menu
-      template(v-for="(el, index) in sidebar_menu_items" :key="`smi-${index}`")
+      template(v-for="(el, _index) in sidebar_menu_items" :key="`smi-${_index}`")
         SBMenuItem(:item="el" :active="sidebar_menu_item_selected(el)" @click="onSidebarMenuItemClick(el)")
     .sidebar__footer
       SBMenuItem(:item="{title: 'Help'}" :active="sidebar_menu_item_selected({title: 'Help'})" @click="onSidebarMenuItemClick({title: 'Help'})")
@@ -20,7 +20,8 @@
     
 <script setup lang="ts">
   import { ref, reactive } from 'vue'
-  import { useMainStore }  from '@/stores/main'
+  // import { useMainStore }  from '@/stores/main'
+  import { useRouter } from 'vue-router'
 
   // Types
   import type { SidebarMenuItem } from '@app-types/sidebar.type'
@@ -29,7 +30,8 @@
   import SBMenuItem from '@components/SidebarMenuItem/SidebarMenuItem.vue'
   import NavBar from '@components/NavigationBar/NavigationBar.vue'
 
-  const store = useMainStore()
+  // const store = useMainStore()
+  const router = useRouter()
 
   const selected_menu_item = reactive<SidebarMenuItem>({
     title: undefined
@@ -39,7 +41,8 @@
 
   const sidebar_menu_items = ref<SidebarMenuItem[]>([
     {
-      title: 'Point 1'
+      title: 'Main page',
+      route: '/main-page'
     },
     {
       title: 'Point 2'
@@ -61,6 +64,7 @@
 
   function onSidebarMenuItemClick(element: SidebarMenuItem) {
     selected_menu_item.title = element.title
+    element?.route && router.push({ path: element.route })
   }
 
   function sidebar_menu_item_selected(element: SidebarMenuItem): boolean {

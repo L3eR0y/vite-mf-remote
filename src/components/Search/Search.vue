@@ -7,6 +7,7 @@
 </template>
 
 <script setup lang="ts">
+// @ts-expect-error 
 import MagnifyIcon from 'vue-material-design-icons/Magnify.vue'
 </script>
 

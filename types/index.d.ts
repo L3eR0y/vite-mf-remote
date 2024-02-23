@@ -1,7 +1,6 @@
 declare module '*.webp'
-declare module '@synergy/*'
-declare module 'ui-kit-bundler'
-declare module 'kit/*'
+declare module 'vue-material-design-icons'
+
 
 type Group = {
     id?: string,
